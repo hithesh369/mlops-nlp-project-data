@@ -1,0 +1,17 @@
+name: Trigger Argo Workflow
+# This workflow triggers an Argo workflow when csv files updated
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  argo-submit:
+    runs-on: [self-hosted]  
+    steps:
+        - name: Build Docker Image
+          run: |
+            argo submit --from workflowtemplate/mlops-training-template
+
+
